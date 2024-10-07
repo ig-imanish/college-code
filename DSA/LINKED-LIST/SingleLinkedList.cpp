@@ -1,38 +1,39 @@
 #include <iostream>
 using namespace std;
 
-struct Node {
-    int data;
-    Node *next;
-    Node(int num) {
-        data = num;
-        next = nullptr;
-    }
+struct Node{
+  int data;
+  Node *next;
+  Node(int num){
+    data=num;
+    next=nullptr;
+  }
 };
-Node *head = nullptr;
+Node *head=nullptr;
 
-void traverse() {
-    if (head == nullptr) {
-        cout << "Linked List is empty." << endl;
-        return;
-    }
-    Node *ptr = head;
-    while (ptr != nullptr) {
-        cout << ptr->data << " ";
-        ptr = ptr->next;
-    }
-    cout << endl;
+void traverse(){
+  if(head==nullptr){
+    cout<<"Linked List is empty."<<endl;
+    return;
+  }
+  Node *ptr=head;
+  while(ptr!=nullptr){
+    cout<<ptr->data<<" ";
+    ptr=ptr->next;
+  }
+  cout<<endl;
 }
 
-void insertAtBeg(int num) {
-    Node *p = new Node(num);
-    if (head == nullptr) {
-        head = p;
-        return;
-    } else {
-        p->next = head;
-        head = p;
-    }
+void insertAtBeg(int num){
+  Node *p= new Node(num);
+  if(head==nullptr){
+    head=p;
+    return;
+  }
+  else{
+    p->next=head;
+    head=p;
+  }
 }
 
 void insertAfterGivenNode(int num, int givenValue) {
@@ -54,6 +55,7 @@ void insertAfterGivenNode(int num, int givenValue) {
     p->next = ptr->next;
     ptr->next = p;
 }
+
 
 void insertBeforeGivenNode(int num, int givenValue) {
     Node *p = new Node(num);
@@ -90,19 +92,24 @@ void insertBeforeGivenNode(int num, int givenValue) {
     ptr->next = p;
 }
 
-void insertAtEnd(int num) {
-    Node *p = new Node(num);
-    Node *ptr = head;
-    if (ptr == nullptr) {
-        head = p;
-        return;
-    }
-    while (ptr->next != nullptr) {
-        ptr = ptr->next;
-    }
-    ptr->next = p;
-    p->next = nullptr;
+void insertAtEnd(int num){
+  Node *p= new Node(num);
+  Node *ptr=head;
+
+  if(ptr==nullptr){
+    p->next=ptr;
+    ptr=p;
+    return;
+  }
+ 
+  while(ptr->next!=nullptr){
+    ptr=ptr->next;
+    
+  }
+  ptr->next=p;
+  p->next=nullptr;
 }
+
 
 void deletionAtBeg(){
   if(head==nullptr){
@@ -174,38 +181,41 @@ void deletionBeforeGivenValue(int val) {
         postPtr = postPtr->next;
     }
 
-
+    // If value is not found
     if (postPtr->data != val) {
         cout << "Value not found in the list\n";
         return;
     }
 
-
+    // If we have valid pointers, delete the node before the value
     if (prePtr != nullptr) {
         prePtr->next = postPtr;
         delete ptr;
     }
 }
 
-int main() {
-    // INSERTION
-    insertAtBeg(10);
-    traverse();
-    insertAtBeg(40);
-    traverse();
-    insertBeforeGivenNode(30, 20);
-    traverse();
-    insertAfterGivenNode(20, 30);  
-    traverse();
-    insertAtEnd(0);
-    traverse();
-    deletionAtBeg();
-    traverse();
-    deletionAtEnd();
-    traverse();
-    deletionAfterGivenValue(20);
-    traverse();
-    deletionBeforeGivenValue(20);
-    traverse();
-    return 0;
+
+int main() 
+{
+  // INSERTION 
+  insertAtBeg(10);
+  traverse();
+  insertAtBeg(40);
+  traverse();
+  insertBeforeGivenNode(30,10);
+  traverse();
+  insertAfterGivenNode(20,30);
+  traverse();
+  insertAtEnd(0);
+  traverse();
+    //deletion
+  deletionAtBeg();
+  traverse();
+  deletionAtEnd();
+  traverse();
+  deletionAfterGivenValue(20);
+  traverse();
+  deletionBeforeGivenValue(20);
+  traverse();
+  return 0;
 }
